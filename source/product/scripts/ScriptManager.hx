@@ -7,7 +7,7 @@ class ScriptManager
 {
 	public static function parseScript(scriptFilePath:String)
 	{
-		final script:ScriptFile = cast Assets.getJsonFile(scriptFilePath, false);
+		final script:ScriptFile = cast Assets.getScriptFile(scriptFilePath, false);
 
 		var scriptTrace = function(v:Dynamic, ?infos:PosInfos)
 		{

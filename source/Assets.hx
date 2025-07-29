@@ -6,6 +6,8 @@ class Assets
 	public static var VIDEO_EXT:String = 'mp4'; // mayhaps
 	public static var SOUND_EXT:String = 'wav';
 
+	public static var SCRIPT_EXT:String = 'json';
+
 	// file paths
 
 	public static function getPath(id:String)
@@ -30,8 +32,9 @@ class Assets
 
 	public static function getFileTextContent(id:String, ?dataFolder:Bool = true)
 	{
-                var path = getAssetPath('$id');
-                if (dataFolder) path = getDataPath('$id');
+		var path = getAssetPath('$id');
+		if (dataFolder)
+			path = getDataPath('$id');
 
 		return FlxModding.system.getText(path);
 	}
@@ -39,14 +42,21 @@ class Assets
 	public static function getTextFile(id:String, ?dataFolder:Bool = true)
 		return getFileTextContent('$id.txt', dataFolder);
 
+	public static function getFileJsonContent(id:String, ?dataFolder:Bool = true)
+		return Json.parse(getFileTextContent(id));
+
 	public static function getJsonFile(id:String, ?dataFolder:Bool = true)
-		return Json.parse(getFileTextContent('$id.json', dataFolder));
+		return getFileJsonContent('$id.json', dataFolder);
 
-        public static function getImage(id:String, ?imageFolder:Bool = true)
-        {
-                var path = getAssetPath('$id.$IMAGE_EXT');
-                if (imageFolder) path = getImagePath(id);
+	public static function getScriptFile(id:String, ?dataFolder:Bool = true)
+		return getFileJsonContent('$id.$SCRIPT_EXT', dataFolder);
 
-                return FlxModding.system.getBitmapData(path);
-        }
+	public static function getImage(id:String, ?imageFolder:Bool = true)
+	{
+		var path = getAssetPath('$id.$IMAGE_EXT');
+		if (imageFolder)
+			path = getImagePath(id);
+
+		return FlxModding.system.getBitmapData(path);
+	}
 }
