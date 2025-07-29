@@ -1,6 +1,6 @@
 {
         "scripts": {
-                "scriptPath": "assets/data/scripts",
+                "scriptPath": "data/scripts",
                 "mainScriptName": "main",
                 "customExtension": ".json"
         },
