@@ -1,3 +1,5 @@
+import haxe.Json;
+
 class Assets
 {
 	public static var IMAGE_EXT:String = 'png';
@@ -38,7 +40,7 @@ class Assets
 		return getFileTextContent('$id.txt', dataFolder);
 
 	public static function getJsonFile(id:String, ?dataFolder:Bool = true)
-		return getFileTextContent('$id.json', dataFolder);
+		return Json.parse(getFileTextContent('$id.json', dataFolder));
 
         public static function getImage(id:String, ?imageFolder:Bool = true)
         {

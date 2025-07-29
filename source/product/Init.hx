@@ -21,6 +21,13 @@ class InitManager
 {
 	public static function readInitFile(file:InitJson)
 	{
-		// TODO \\
+		ProductInfo.customExtension = file.scripts.customExtension;
+		ProductInfo.mainScriptName = file.scripts.mainScriptName;
+		ProductInfo.scriptPath = file.scripts.scriptPath;
+
+		ProductInfo.credits = file.product.credits;
+		ProductInfo.jlang_release = file.product.jlang_release;
+		ProductInfo.title = file.product.title;
+		ProductInfo.version = file.product.version;
 	}
 }

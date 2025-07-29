@@ -9,6 +9,6 @@ class Main extends Sprite
 		FlxModding.init();
 		
 		super();
-		addChild(new FlxGame(0, 0, Runner));
+		addChild(new FlxGame(0, 0, InitState));
 	}
 }
