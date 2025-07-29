@@ -16,5 +16,3 @@ typedef ScriptFile =
 				}>;
 		};
 }
-
-class ScriptManager {}
