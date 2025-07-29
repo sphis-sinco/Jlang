@@ -37,7 +37,6 @@
 
 	<assets path="mods" />
 	<source path="assets" if="debug"/>
-	<source path="debugMods" if="debug"/>
 	<assets path="debugMods" rename="mods" if="debug"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
