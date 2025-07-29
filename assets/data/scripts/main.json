@@ -1,6 +1,6 @@
 {
         "logging": {
-                "prefix": "[MAIN]"
+                "prefix": "MAIN"
         },
         "main_function": {
                 "name": "main",
