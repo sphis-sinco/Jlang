@@ -1,0 +1,14 @@
+{
+        "scripts": {
+                "scriptPath": "assets/data/scripts",
+                "mainScriptName": "main",
+                "customExtension": ".json"
+        },
+        "product": {
+                "title": "JLang Project",
+                "version": "1.0.0",
+                "credits": [
+                        "Sinco - Creator"
+                ]
+        }
+}
