@@ -601,15 +601,15 @@ class FlxModding
 	{
 		FlxModding.sort();
 
-		if (StringTools.startsWith(id, "flixel/") || StringTools.startsWith(id, FlxModding.modsDirectory + "/"))
+		if (StringTools.startsWith(id, "flixel/") || StringTools.startsWith(id, FlxModding.modsDirectory + "/")) // mods/
 		{
 			return id;
 		}
-		else if (StringTools.startsWith(id, FlxModding.assetDirectory + "/"))
+		else if (StringTools.startsWith(id, FlxModding.assetDirectory + "/")) // assets/
 		{
 			return pathway(id.substr(Std.string(FlxModding.assetDirectory + "/").length));
 		}
-		else
+		else // anything else
 		{
 			return pathway(id);
 		}
@@ -631,7 +631,10 @@ class FlxModding
 			}
 		}
 
-		return directory + "/" + id;
+		final finalpath = directory + "/" + id;
+		print(finalpath);
+
+		return finalpath;
 		#end
 
 		return null;
