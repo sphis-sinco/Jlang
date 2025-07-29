@@ -1,0 +1,15 @@
+{
+        "scripts": {
+                "scriptPath": "assets/data/scripts",
+                "mainScriptName": "main",
+                "customExtension": ".json"
+        },
+        "product": {
+                "title": "JLang Project (MODDED!!!!!!!!!!!)",
+                "version": "1.0.0",
+                "jlang_release": 1,
+                "credits": [
+                        "Sinco - Creator"
+                ]
+        }
+}
