@@ -4,7 +4,7 @@ class Runner extends FlxState
 {
 	override public function create()
 	{
-		trace(FlxModding.system.getText('assets/data/init.json'));
+		trace(Assets.getJsonFile('init'));
 
 		super.create();
 	}
