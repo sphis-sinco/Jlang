@@ -1,0 +1,14 @@
+{
+        "logging": {
+                "prefix": "[MAIN]"
+        },
+        "main_function": {
+                "name": "main",
+                "code": [
+                        {
+                                "function_name": "print",
+                                "args": ["Hello world"]
+                        }
+                ]
+        }
+}
