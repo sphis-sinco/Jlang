@@ -8,6 +8,34 @@
                         {
                                 "function_name": "print",
                                 "args": ["Hello world"]
+                        },
+                        {
+                                "function_name": "setvar",
+                                "args": ["a", "10"]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["a is "]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["getvar", "a"]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["So if I do setvar 20 and then print getvar a."]
+                        },
+                        {
+                                "function_name": "setvar",
+                                "args": ["a", "20"]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["a is "]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["getvar", "a"]
                         }
                 ]
         }

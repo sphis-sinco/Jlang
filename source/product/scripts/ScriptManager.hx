@@ -8,7 +8,9 @@ class ScriptManager
 
 	public static function parseScript(scriptFilePath:String)
 	{
-		var scriptinfoStuffs:ScriptInfo = {};
+		var scriptinfoStuffs:ScriptInfo = {
+			variables: []
+		};
 
 		if (!scripts.exists(scriptFilePath))
 		{
@@ -17,10 +19,8 @@ class ScriptManager
 
 		final script:ScriptFile = cast Assets.getScriptFile(scriptFilePath, false);
 
-		var updateVariable = function(name:String, newValue:Dynamic)
-		{
-			scriptinfoStuffs.variables.set(name, newValue);
-		}
+		var updateVariable = function(name:String, newValue:Dynamic) scriptinfoStuffs.variables.set(name, newValue);
+		var getVariable = function(name:String) return scriptinfoStuffs.variables.get(name);
 
 		var scriptTrace = function(v:Dynamic, ?infos:PosInfos)
 		{
@@ -41,10 +41,14 @@ class ScriptManager
 		{
 			var args:Map<String, Dynamic> = [];
 
-			var i = 0;
+			var i = 1;
+			FlxG.log.add('// ${code.function_name} \\\\');
 			for (arg in code.args)
 			{
 				args.set('arg$i', arg);
+
+				FlxG.log.notice('arg$i == ${args.get('arg$i')}');
+
 				i++;
 			}
 
@@ -54,15 +58,22 @@ class ScriptManager
 					switch (Std.string((args.get('arg1'))).toLowerCase())
 					{
 						case 'getvar':
-							final hasValueArg = args.get('arg2') == null;
-							if (hasValueArg) scriptTrace(args.get('arg2')); else scriptTrace('ERROR: MISSING "print getvar" ARG "value"');
+							final hasValueArg = args.get('arg2') != null;
+							if (hasValueArg)
+							{
+								scriptTrace(getVariable(args.get('arg2')));
+							}
+							else
+							{
+								scriptTrace('ERROR: MISSING "print getvar" ARG "value"');
+							}
 
 						default:
 							scriptTrace(args.get('arg1'));
 					}
 				case 'setvar':
-					final hasNameArg = args.get('arg1') == null;
-					final hasValueArg = args.get('arg2') == null;
+					final hasNameArg = args.get('arg1') != null;
+					final hasValueArg = args.get('arg2') != null;
 
 					if (hasNameArg && hasValueArg)
 					{
