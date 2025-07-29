@@ -1,12 +1,6 @@
-<style>
-        .pixelart {
-                image-rendering: pixelated;
-        }
-</style>
-
 <div align="center">
 <h1>
-        <img src="./assets/images/icon.png" width="32" class="pixelart">
+        <img src="./assets/images/icon.png" width="32" style="image-rendering: pixelated;">
         Jlang
 </h1>
 
