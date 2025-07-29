@@ -23,8 +23,8 @@ class InitManager
 {
 	public static function readInitFile(file:InitJson)
 	{
-		ProductInfo.customExtension = file.scripts.customExtension ?? '.json';
-		Assets.SCRIPT_EXT = ProductInfo.customExtension.split('.')[0];
+		ProductInfo.customExtension = file.scripts.customExtension ?? 'json';
+		Assets.SCRIPT_EXT = ProductInfo.customExtension;
 
 		ProductInfo.mainScriptName = file.scripts.mainScriptName ?? 'main';
 		ProductInfo.scriptPath = file.scripts.scriptPath ?? 'data/scripts';

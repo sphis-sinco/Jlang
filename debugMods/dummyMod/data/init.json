@@ -2,7 +2,7 @@
         "scripts": {
                 "scriptPath": "data/scripts",
                 "mainScriptName": "main",
-                "customExtension": ".json"
+                "customExtension": "json"
         },
         "product": {
                 "title": "JLang Project (MODDED!!!!!!!!!!!)",

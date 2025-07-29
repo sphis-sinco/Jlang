@@ -43,7 +43,7 @@ class Assets
 		return getFileTextContent('$id.txt', dataFolder);
 
 	public static function getFileJsonContent(id:String, ?dataFolder:Bool = true)
-		return Json.parse(getFileTextContent(id));
+		return Json.parse(getFileTextContent(id, dataFolder));
 
 	public static function getJsonFile(id:String, ?dataFolder:Bool = true)
 		return getFileJsonContent('$id.json', dataFolder);
