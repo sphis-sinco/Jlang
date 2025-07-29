@@ -1,7 +1,5 @@
 package;
 
-import flixel.FlxState;
-
 class Runner extends FlxState
 {
 	override public function create()
