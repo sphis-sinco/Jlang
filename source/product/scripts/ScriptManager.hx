@@ -95,7 +95,16 @@ class ScriptManager
 
 		if (hasNameArg && hasValueArg)
 		{
-			updateVariable(args.get('arg1'), args.get('arg2'));
+			if (Std.string(args.get('arg1')).toLowerCase().startsWith('math_'))
+			{
+				// arg 1 - math operation
+				// arg 2 - [a, b ..]
+				// arg 3 - variable
+
+				updateVariable(args.get('arg3'), Std.string(mathCommand(args, scriptFilePath)));
+			}
+			else
+				updateVariable(args.get('arg1'), args.get('arg2'));
 		}
 		else
 		{
@@ -106,5 +115,36 @@ class ScriptManager
 			else if (hasNameArg && !hasValueArg)
 				scriptTrace('ERROR: MISSING "setvar" ARG "value"', scriptFilePath);
 		}
+	}
+
+	public static function mathCommand(args:Map<String, Dynamic>, scriptFilePath:String):Null<Float>
+	{
+		final mathValues:Array<Float> = cast args.get('arg2');
+		// trace(mathValues);
+		var finalval:Null<Float> = null;
+
+		switch (Std.string(args.get('arg1')).toLowerCase().split('_')[1])
+		{
+			case 'plus', '+':
+				for (number in mathValues)
+					finalval = finalval + number;
+			case 'subtract', '-':
+				for (number in mathValues)
+					finalval = finalval - number;
+			case 'multiply', '*':
+				for (number in mathValues)
+					if (finalval == null)
+						finalval = number
+					else
+						finalval = finalval * number;
+			case 'divide', '/':
+				for (number in mathValues)
+					if (finalval == null)
+						finalval = number
+					else
+						finalval = finalval / number;
+		}
+
+		return finalval;
 	}
 }
