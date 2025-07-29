@@ -100,6 +100,14 @@
                         {
                                 "function_name": "print",
                                 "args": ["getvar", "a"]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["I can also do this (1/4):"]
+                        },
+                        {
+                                "function_name": "print",
+                                "args": ["math_divide", [1,4], "a"]
                         }
                 ]
         }

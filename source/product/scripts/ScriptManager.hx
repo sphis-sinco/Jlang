@@ -84,7 +84,15 @@ class ScriptManager
 				}
 
 			default:
-				scriptTrace(args.get('arg1'), scriptFilePath);
+				if (Std.string(args.get('arg1')).toLowerCase().startsWith('math_'))
+				{
+					fullMathCommand(args, scriptFilePath, d ->
+					{
+						scriptTrace(d, scriptFilePath);
+					}, Std.string(mathCommand(args, scriptFilePath)));
+				}
+				else
+					scriptTrace(args.get('arg1'), scriptFilePath);
 		}
 	}
 
@@ -97,11 +105,10 @@ class ScriptManager
 		{
 			if (Std.string(args.get('arg1')).toLowerCase().startsWith('math_'))
 			{
-				// arg 1 - math operation
-				// arg 2 - [a, b ..]
-				// arg 3 - variable
-
-				updateVariable(args.get('arg3'), Std.string(mathCommand(args, scriptFilePath)));
+				fullMathCommand(args, scriptFilePath, d ->
+				{
+					updateVariable(args.get('arg3'), d);
+				}, Std.string(mathCommand(args, scriptFilePath)));
 			}
 			else
 				updateVariable(args.get('arg1'), args.get('arg2'));
@@ -114,6 +121,31 @@ class ScriptManager
 				scriptTrace('ERROR: MISSING "setvar" ARG "name"', scriptFilePath);
 			else if (hasNameArg && !hasValueArg)
 				scriptTrace('ERROR: MISSING "setvar" ARG "value"', scriptFilePath);
+		}
+	}
+
+	public static function fullMathCommand(args:Map<String, Dynamic>, scriptFilePath:String, finalOperation:Dynamic->Void, finalValue:Dynamic)
+	{
+		// arg 1 - math operation
+		// arg 2 - [a, b ..]
+		// arg 3 - variable
+
+		final hasMathOp = args.get('arg1') != null;
+		final hasValues = args.get('arg2') != null;
+		final hasFinalValue = finalValue != null;
+
+		if (hasMathOp && hasValues && hasFinalValue)
+			finalOperation(finalValue);
+		else
+		{
+			if (!hasMathOp && !hasValues && !hasFinalValue)
+				scriptTrace('ERROR: MISSING "setvar" ARGS "math operation" & "math variables" & "finalValue', scriptFilePath);
+			else if (!hasMathOp && hasValues && hasFinalValue)
+				scriptTrace('ERROR: MISSING "setvar" ARG "math operation"', scriptFilePath);
+			else if (hasMathOp && !hasValues && hasFinalValue)
+				scriptTrace('ERROR: MISSING "setvar" ARG "math variables"', scriptFilePath);
+			else if (hasMathOp && hasValues && !hasFinalValue)
+				scriptTrace('ERROR: MISSING "setvar" ARG "finalValue"', scriptFilePath);
 		}
 	}
 
