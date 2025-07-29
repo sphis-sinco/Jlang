@@ -1,5 +1,7 @@
 package product;
 
+import openfl.Lib;
+
 typedef InitJson =
 {
 	var scripts:
@@ -21,13 +23,13 @@ class InitManager
 {
 	public static function readInitFile(file:InitJson)
 	{
-		ProductInfo.customExtension = file.scripts.customExtension;
-		ProductInfo.mainScriptName = file.scripts.mainScriptName;
-		ProductInfo.scriptPath = file.scripts.scriptPath;
+		ProductInfo.customExtension = file.scripts.customExtension ?? '.json';
+		ProductInfo.mainScriptName = file.scripts.mainScriptName ?? 'main';
+		ProductInfo.scriptPath = file.scripts.scriptPath ?? 'data/scripts';
 
-		ProductInfo.credits = file.product.credits;
-		ProductInfo.jlang_release = file.product.jlang_release;
-		ProductInfo.title = file.product.title;
-		ProductInfo.version = file.product.version;
+		ProductInfo.credits = file.product.credits ?? ['Unknown'];
+		ProductInfo.jlang_release = file.product.jlang_release ?? Std.parseInt(Lib.application.meta.get('version'));
+		ProductInfo.title = file.product.title ?? 'Unknown JLand Project';
+		ProductInfo.version = file.product.version ?? '0.0.0';
 	}
 }

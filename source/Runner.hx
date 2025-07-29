@@ -4,6 +4,8 @@ class Runner extends FlxState
 {
 	override public function create()
 	{
+		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
+
 		super.create();
 	}
 
