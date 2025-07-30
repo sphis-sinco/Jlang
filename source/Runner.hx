@@ -1,6 +1,5 @@
 package;
 
-import flixel.group.FlxContainer;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
