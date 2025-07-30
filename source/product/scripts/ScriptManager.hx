@@ -144,7 +144,22 @@ class ScriptManager
 
 		var result:Null<Float> = null;
 
-		var expr = 'var result = 0.0; result = ${expression}; return result;';
+		var expr = '';
+		trace(scriptinfoStuffs.variables);
+		for (variable in scriptinfoStuffs.variables)
+		{
+			trace(variable);
+			try
+			{
+				expr += 'var ${variable.name} = ${variable.value}; ';
+			}
+			catch (e)
+			{
+				trace(e.message);
+			}
+		}
+		expr += 'var result = 0.0; result = ${expression}; return result;';
+		trace(expr);
 		var parser = new hscript.Parser();
 		var ast = parser.parseString(expr);
 		var interp = new hscript.Interp();
