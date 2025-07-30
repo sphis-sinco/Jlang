@@ -2,11 +2,20 @@ package;
 
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
+import flixel.text.FlxText;
 
 class Runner extends FlxState
 {
+	public var inputText:FlxText;
+	public var it:String;
+
 	override public function create()
 	{
+		it = '';
+
+		inputText = new FlxText(640, 0, 0, "", 16);
+		add(inputText);
+
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 
 		super.create();
@@ -14,6 +23,8 @@ class Runner extends FlxState
 
 	override public function update(elapsed:Float)
 	{
+		inputText.text = it;
+
 		super.update(elapsed);
 	}
 
@@ -36,17 +47,17 @@ class Runner extends FlxState
 					switch (key)
 					{
 						case FlxKey.BACKSPACE:
-							// song = song.substring(0, song.length - 1);
+							it = it.substring(0, it.length - 1);
 						case FlxKey.SPACE:
-							// song += " ";
+							it += " ";
 						default:
 							var keyName:String = Std.string(key);
 							if (allowedKeys.contains(keyName))
 							{
 								keyName = FlxG.keys.pressed.SHIFT ? keyName.toUpperCase() : keyName.toLowerCase();
-								// song += keyName;
-								// if (song.length >= 25)
-								//	song = song.substring(1);
+								it += keyName;
+								if (it.length >= 25)
+									it = it.substring(1);
 							}
 					}
 				}
