@@ -7,14 +7,23 @@ import flixel.util.FlxColor;
 
 class Runner extends FlxState
 {
+	public var leftText:FlxText;
 	public var inputText:FlxText;
-	public var it:String;
+
+	public static var lt:String = '';
+
+	public var it:String = '';
 
 	override public function create()
 	{
+		lt = '';
 		it = '';
 
-		inputText = new FlxText(Std.int(FlxG.width / 2), 0, Std.int(FlxG.width / 2), "", 16);
+		leftText = new FlxText(0, 0, Std.int(FlxG.width / 2), '', 16);
+		leftText.color = FlxColor.WHITE;
+		add(leftText);
+
+		inputText = new FlxText(Std.int(FlxG.width / 2), 0, Std.int(FlxG.width / 2), '', 16);
 		inputText.color = FlxColor.WHITE;
 		add(inputText);
 
@@ -25,6 +34,7 @@ class Runner extends FlxState
 
 	override public function update(elapsed:Float)
 	{
+		leftText.text = lt;
 		inputText.text = it;
 		handleKeyInput(elapsed);
 

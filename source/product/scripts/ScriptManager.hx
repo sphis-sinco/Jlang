@@ -18,6 +18,9 @@ class ScriptManager
 	static function scriptTrace(v:Dynamic, ?scriptFilePath:String, ?infos:PosInfos)
 	{
 		var str = '[${script.logging.prefix ?? scriptFilePath}] $v';
+
+		Runner.lt += '$str\n';
+
 		#if js
 		if (js.Syntax.typeof(untyped console) != "undefined" && (untyped console).log != null)
 			(untyped console).log(str);
