@@ -38,11 +38,30 @@ class Runner extends FlxState
 		inputText.text = it;
 		handleKeyInput(elapsed);
 
+		FlxG.watch.addQuick('leftText.y', leftText.y);
+
+		if (FlxG.keys.pressed.DOWN)
+		{
+			leftText.y -= LEFT_TEXT_VERTICAL_MOVING;
+		}
+		if (FlxG.keys.pressed.UP)
+		{
+			leftText.y += LEFT_TEXT_VERTICAL_MOVING;
+		}
+		final heightMax = leftText.height * 0.9;
+		if (leftText.y < -heightMax)
+			leftText.y = -heightMax;
+		if (leftText.y > 0)
+			leftText.y = 0;
+
 		super.update(elapsed);
 	}
 
 	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ';
 	var keyTime:Float = 0;
+
+	final LEFT_TEXT_VERTICAL_MOVING = 15;
+
 	final MAX_KEYTIME:Float = 0.15;
 	final START_KEYTIME_DEFAULT:Float = 0.05;
 	final START_KEYTIME_ALPHABET:Float = 0.1;
