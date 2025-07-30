@@ -1,3 +1,8 @@
+# r2 - (7/30/2025)
+- Added changelog (hi!)
+- Added LibVLC Logging for `hxCodec`
+- Added 32x32 sized icon
+
 # r1 - (7/30/2025)
 Features:
 - `print` command
