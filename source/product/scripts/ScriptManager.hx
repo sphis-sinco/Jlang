@@ -35,6 +35,11 @@ class ScriptManager
 
 	public static function parseScript(scriptFilePath:String, ?restorationLine:Int = 0)
 	{
+		if (stored_line != 0)
+			stored_line = 0;
+		if (stored_scriptPath != '')
+			stored_scriptPath = '';
+
 		scriptinfoStuffs = {
 			variables: []
 		};
