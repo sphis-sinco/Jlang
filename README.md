@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-        <img src="./assets/images/icon.png" width="32" style="image-rendering: pixelated;">
+        <img src="./assets/images/icon-32.png">
         Jlang
 </h1>
 
