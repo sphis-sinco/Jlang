@@ -7,7 +7,7 @@
         "product": {
                 "title": "JLang Project",
                 "version": "1.0.0",
-                "jlang_release": 1,
+                "jlang_release": 2,
                 "credits": [
                         "Sinco"
                 ]
