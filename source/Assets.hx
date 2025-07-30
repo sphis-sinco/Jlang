@@ -25,6 +25,9 @@ class Assets
 	public static function getImagePath(id:String)
 		return getAssetPath('images/$id.$IMAGE_EXT');
 
+	public static function getVideoPath(id:String)
+		return getAssetPath('videos/$id.$VIDEO_EXT');
+
 	public static function getMusicPath(id:String)
 		return getAssetPath('music/$id.$SOUND_EXT');
 

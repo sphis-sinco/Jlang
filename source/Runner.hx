@@ -5,6 +5,9 @@ import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+#if hxCodec
+import hxcodec.flixel.FlxVideo;
+#end
 
 class Runner extends FlxState
 {
@@ -15,7 +18,9 @@ class Runner extends FlxState
 
 	public var it:String = '';
 
-	public static var frontLayer:FlxTypedGroup<FlxBasic>;
+	#if hxCodec
+	public static var videoLayer:FlxTypedGroup<FlxVideo>;
+	#end
 
 	override public function new()
 	{
@@ -24,7 +29,9 @@ class Runner extends FlxState
 		InitManager.readInitFile(Assets.getJsonFile('init'));
 		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');
 
-		frontLayer = new FlxTypedGroup<FlxBasic>();
+		#if hxCodec
+		videoLayer = new FlxTypedGroup<FlxBasic>();
+		#end
 	}
 
 	override public function create()
@@ -40,7 +47,9 @@ class Runner extends FlxState
 		inputText.color = FlxColor.WHITE;
 		add(inputText);
 
-		add(frontLayer);
+		#if hxCodec
+		add(videoLayer);
+		#end
 
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 

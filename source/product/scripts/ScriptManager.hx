@@ -103,6 +103,8 @@ class ScriptManager
 					stored_line = index + 1;
 					stored_scriptPath = scriptFilePath;
 					break;
+				case 'playvideo':
+					playVideoCmd(args, scriptFilePath);
 				default:
 					scriptTrace('ERROR: UNKNOWN FUNCTION NAME WHILE PARSING: ${code.function_name}', scriptFilePath);
 			}
@@ -118,6 +120,30 @@ class ScriptManager
 
 	public static var stored_scriptPath:String = '';
 	public static var stored_line:Int = 0;
+
+	public static function playVideoCmd(args:Map<String, Dynamic>, scriptFilePath:String)
+	{
+		#if !hxCodec
+		lime.app.Application.current.window.alert('The "HxCodec" library cannot be found', 'HxCodec required for videos');
+		return;
+		#end
+
+		final hasPathArg = args.get('arg1') != null;
+
+		if (hasPathArg)
+		{
+			var video:hxcodec.flixel.FlxVideo = new hxcodec.flixel.FlxVideo();
+			video.onEndReached.add(video.dispose);
+
+			Runner.videoLayer.add(video);
+			video.play(Assets.getVideoPath(args.get('arg1')));
+		}
+		else
+		{
+			if (!hasPathArg)
+				scriptTrace('ERROR: MISSING "playvideo" ARG "path"', scriptFilePath);
+		}
+	}
 
 	public static function printCommand(args:Map<String, Dynamic>, scriptFilePath:String)
 	{

@@ -49,7 +49,7 @@
 	<define name="hscriptPos" />
 
 	
-	<haxelib name="hxCodec" if="desktop || mobile" />
+	<haxelib name="hxCodec" if="desktop || mobile" unless="hl"/>
 
 	<!--In case you want to use the addons package-->
 	<!--<haxelib name="flixel-addons" />-->
