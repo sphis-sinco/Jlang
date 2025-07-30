@@ -4,7 +4,7 @@
         Jlang
 </h1>
 
-A programming language entirely based on JSON files.
+A scripting language for haxeflixel entirely based on JSON files.
 
 Hopefully easy to use
 
