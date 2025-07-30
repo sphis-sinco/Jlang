@@ -11,31 +11,15 @@ class ScriptManager
 		variables: []
 	};
 
-	static var updateVariable = function(name:String, nv:Dynamic)
+	static var updateVariable = function(name:String, newValue:Dynamic)
 	{
-		var newValue:Dynamic = null;
-		newValue = nv;
-
-		try
-		{
-			if (Std.isOfType(nv, String))
-				nv = '"$newValue"';
-			else
-				nv = Std.parseFloat(newValue);
-		}
-		catch (e)
-		{
-			trace(e);
-
-			nv = '$newValue';
-		}
-
-		trace(newValue);
+		if (Std.isOfType(newValue, String))
+			newValue = '"$newValue"';
 
 		if (!mathVars.contains(name))
-			mathVars += 'var $name = $nv; ';
+			mathVars += 'var $name = $newValue; ';
 		else
-			mathVars.replace('var $name = ${scriptinfoStuffs.variables.get(name)}', 'var $name = $nv');
+			mathVars.replace('var $name = ${scriptinfoStuffs.variables.get(name)}', 'var $name = $newValue');
 
 		scriptinfoStuffs.variables.set(name, newValue);
 	}
@@ -81,8 +65,7 @@ class ScriptManager
 		if (index < 1)
 		{
 			// in theory there should've been no changes
-			if (scriptFilePath != '')
-				script = cast Assets.getScriptFile(scriptFilePath, false);
+			script = cast Assets.getScriptFile(scriptFilePath, false);
 		}
 
 		var ii = 0;
