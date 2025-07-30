@@ -56,6 +56,12 @@ class ScriptManager
 		{
 			if (index > 0 && ii < index)
 			{
+				if (stored_input != '')
+				{
+					updateVariable('stored_input', stored_input);
+					stored_input = '';
+				}
+
 				ii++;
 				continue;
 			}
