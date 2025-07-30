@@ -264,7 +264,7 @@ class ScriptManager
 
 		if (hasPathArg)
 		{
-			var video:hxcodec.flixel.FlxVideo = new hxcodec.flixel.FlxVideo();
+			var video:FlxVideo = new FlxVideo();
 			video.onEndReached.add(() ->
 			{
 				video.dispose();

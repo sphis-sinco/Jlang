@@ -1,7 +1,5 @@
 package;
 
-import hxcodec.flixel.FlxVideo;
-
 class InitState extends FlxState
 {
 	override function create()

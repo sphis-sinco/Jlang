@@ -5,3 +5,9 @@ import product.Init.InitManager;
 import product.scripts.*;
 
 using StringTools;
+
+#if hxCodec
+import hxcodec.flixel.FlxVideo;
+#else
+#error "You need HxCodec for videos."
+#end
