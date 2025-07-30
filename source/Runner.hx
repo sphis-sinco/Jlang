@@ -2,10 +2,12 @@ package;
 
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
+import flixel.system.scripting.FlxHScript;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxSignal;
+import sys.FileSystem;
 
 class Runner extends FlxState
 {
@@ -48,18 +50,16 @@ class Runner extends FlxState
 
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 
-		var scriptData = try
+		#if sys
+		final dirToRead = Assets.getAssetPath('${ProductInfo.scriptPath}');
+		trace(dirToRead);
+		final readDir = FileSystem.readDirectory(dirToRead);
+		trace(readDir);
+		for (file in readDir)
 		{
-			Assets.getFileTextContent('${ProductInfo.scriptPath}/Runner.hxc', false);
+			trace(file);
 		}
-		catch (e)
-		{
-			'trace(\'No script\');';
-		}
-		var parser = new hscript.Parser();
-		var ast = parser.parseString(scriptData);
-		var interp = new hscript.Interp();
-		interp.execute(ast);
+		#end
 
 		super.create();
 	}

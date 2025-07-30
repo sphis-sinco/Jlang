@@ -7,6 +7,7 @@ class Assets
 	public static var SOUND_EXT:String = 'wav';
 
 	public static var SCRIPT_EXT:String = 'json';
+	public static var HSCRIPT_EXT:String = 'hxc';
 
 	// file paths
 
