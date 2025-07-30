@@ -9,7 +9,8 @@
                         { "function_name": "clear" },
                         { "function_name": "print", "args": ["Hello world"]},
                         { "function_name": "math", "args": ["5 + a * 6 / 8", "store", "b"]},
-                        { "function_name": "print", "args": ["getvar", "b"]}
+                        { "function_name": "print", "args": ["getvar", "b"]},
+                        { "function_name": "print", "args": ["math", "10 + b * 7", false]}
                 ]
         }
 }

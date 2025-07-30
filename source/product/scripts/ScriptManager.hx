@@ -260,6 +260,9 @@ class ScriptManager
 	{
 		switch (Std.string((args.get('arg1'))).toLowerCase())
 		{
+			case 'math':
+				newmathCommand(['arg1' => args.get('arg2'), 'arg2' => 'print', 'arg3' => args.get('arg3')], scriptFilePath);
+
 			case 'getvar':
 				final hasValueArg = args.get('arg2') != null;
 				if (hasValueArg)
