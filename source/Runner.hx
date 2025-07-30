@@ -58,10 +58,9 @@ class Runner extends FlxState
 			trace(dir);
 			for (file in FileSystem.readDirectory(dir))
 			{
-				trace(file);
-
 				if (file.endsWith(Assets.HSCRIPT_EXT))
 				{
+					trace(file);
 					add(new FlxHScript('$dir/$file'));
 				}
 				else if (!file.contains('.'))
