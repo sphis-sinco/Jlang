@@ -12,7 +12,8 @@
                         { "function_name": "print", "args": ["getvar", "stored_input"]},
                         { "function_name": "print", "args": ["Gonna play a video now."]},
                         { "function_name": "input"},
-                        { "function_name": "playvideo", "args": ["tempVid"]}
+                        { "function_name": "playvideo", "args": ["tempVid"]},
+                        { "function_name": "switchfile", "args": ["newmathstuff"] }
                 ]
         }
 }

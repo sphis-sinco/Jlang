@@ -1,0 +1,12 @@
+{
+        "logging": {
+                "prefix": "NEW MATH STUFF"
+        },
+        "main_function": {
+                "name": "main",
+                "code": [
+                        { "function_name": "clear" },
+                        { "function_name": "print", "args": ["Hello world"]}
+                ]
+        }
+}
