@@ -42,6 +42,7 @@ class ScriptManager
 		if (!scripts.exists(scriptFilePath))
 			scripts.set(scriptFilePath, scriptinfoStuffs);
 
+		trace('Parsing script assets/$scriptFilePath.${ProductInfo.customExtension}');
 		script = cast Assets.getScriptFile(scriptFilePath, false);
 
 		for (code in script.main_function.code)
@@ -65,6 +66,12 @@ class ScriptManager
 					printCommand(args, scriptFilePath);
 				case 'setvar':
 					setVarCommand(args, scriptFilePath);
+				case 'switchfile':
+					parseScript('${ProductInfo.scriptPath}/${args.get('arg1')}');
+					break;
+				case 'clear':
+					trace('Clearing output');
+					Runner.lt = '';
 				default:
 					scriptTrace('ERROR: UNKNOWN FUNCTION NAME WHILE PARSING: ${code.function_name}', scriptFilePath);
 			}
