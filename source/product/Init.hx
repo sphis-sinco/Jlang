@@ -30,7 +30,13 @@ class InitManager
 		ProductInfo.scriptPath = file.scripts.scriptPath ?? 'data/scripts';
 
 		ProductInfo.credits = file.product.credits ?? ['Unknown'];
-		ProductInfo.jlang_release = file.product.jlang_release ?? Std.parseInt(Lib.application.meta.get('version'));
+
+		final appVer = Std.parseInt(Lib.application.meta.get('version'));
+		ProductInfo.jlang_release = file.product.jlang_release ?? appVer;
+
+		if (ProductInfo.jlang_release < appVer)
+			trace('Outdated jlang release: ${ProductInfo.jlang_release}');
+
 		ProductInfo.title = file.product.title ?? 'Unknown JLand Project';
 		ProductInfo.version = file.product.version ?? '0.0.0';
 	}
