@@ -11,7 +11,15 @@ class ScriptManager
 		variables: []
 	};
 
-	static var updateVariable = function(name:String, newValue:Dynamic) scriptinfoStuffs.variables.set(name, '$newValue');
+	static var updateVariable = function(name:String, newValue:Dynamic)
+	{
+		if (!mathVars.contains(name))
+			mathVars += 'var ${name} = ${newValue}; ';
+		else
+			mathVars.replace('var ${name} = ${scriptinfoStuffs.variables.get(name)}', 'var $name = $newValue');
+
+		scriptinfoStuffs.variables.set(name, newValue);
+	}
 	static var getVariable = function(name:String) return scriptinfoStuffs.variables.get(name);
 
 	static var script:ScriptFile;
@@ -120,6 +128,8 @@ class ScriptManager
 
 	static final numbers:String = '1234567890';
 
+	static var mathVars:String = '';
+
 	public static function newmathCommand(args:Map<String, Dynamic>, scriptFilePath:String)
 	{
 		final expression:String = Std.string(args.get('arg1'));
@@ -143,29 +153,16 @@ class ScriptManager
 		}
 		var result:Null<Float> = null;
 
-		try
-		{
-			var expr = '';
-			for (variable in scriptinfoStuffs.variables)
-			{
-				trace(variable);
-				trace(Type.typeof(variable.value));
-				expr += 'var ${variable.name} = ${variable.value}; ';
-			}
-			expr += 'var result = 0.0; result = ${expression}; return result;';
-			trace(expr);
-			var parser = new hscript.Parser();
-			var ast = parser.parseString(expr);
-			var interp = new hscript.Interp();
-			result = interp.execute(ast);
+		var expr = '';
+		expr += mathVars;
+		expr += 'var result = 0.0; result = ${expression}; return result;';
+		trace(expr);
+		var parser = new hscript.Parser();
+		var ast = parser.parseString(expr);
+		var interp = new hscript.Interp();
+		result = interp.execute(ast);
 
-			trace(expression);
-		}
-		catch (e)
-		{
-			lime.app.Application.current.window.alert(e.message, 'Math Command error');
-			result = 0.0;
-		}
+		trace(expression);
 		trace(result);
 
 		switch (nextTask)
@@ -179,7 +176,7 @@ class ScriptManager
 					return;
 				}
 
-				updateVariable(variableName, result);
+				updateVariable(variableName, Std.string(result));
 			case 'print':
 				final includeExpression:Null<Bool> = cast args.get('arg3');
 
