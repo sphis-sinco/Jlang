@@ -51,19 +51,26 @@ class Runner extends FlxState
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 
 		#if sys
-		final dirToRead = Assets.getAssetPath('${ProductInfo.scriptPath}');
-		trace(dirToRead);
-		final readDir = FileSystem.readDirectory(dirToRead);
-		trace(readDir);
-		for (file in readDir)
-		{
-			trace(file);
+		var readDirectory = function(dir:String) {}
 
-			if (file.endsWith(Assets.HSCRIPT_EXT))
+		readDirectory = function(dir:String)
+		{
+			trace(dir);
+			for (file in FileSystem.readDirectory(dir))
 			{
-				add(new FlxHScript('$dirToRead/$file'));
+				trace(file);
+
+				if (file.endsWith(Assets.HSCRIPT_EXT))
+				{
+					add(new FlxHScript('$dir/$file'));
+				}
+				else if (!file.contains('.'))
+				{
+					readDirectory('$dir/$file');
+				}
 			}
 		}
+		readDirectory(Assets.getAssetPath('${ProductInfo.scriptPath}'));
 		#end
 
 		super.create();
