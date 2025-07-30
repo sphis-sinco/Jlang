@@ -162,7 +162,10 @@ class ModMenu extends FlxState
 		{
 			var x_mod = FlxModding.mods.members[x.ID];
 
-			x_mod.active = (curSelected == x.ID);
+			if (!x_mod.active)
+				x_mod.active = (curSelected == x.ID);
+			else if (x_mod.active && curSelected == x.ID)
+				x_mod.active = false;
 
 			if (x_mod.active)
 				trace('Active mod: ${x_mod.name}');
