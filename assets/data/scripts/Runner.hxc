@@ -1,0 +1,2 @@
+trace('Hello world');
+trace('This is a runner script');
