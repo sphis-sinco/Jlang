@@ -13,6 +13,19 @@ class ScriptManager
 
 	static var updateVariable = function(name:String, newValue:Dynamic)
 	{
+		final nonNumbers = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*())~`_+()-={}|[]\\;\':",/<>?';
+		var string:Bool = false;
+
+		for (i in 0...nonNumbers.length)
+		{
+			if ('$newValue'.toLowerCase().contains(nonNumbers.charAt(i)))
+			{
+				string = true;
+				newValue = '"$newValue"';
+				break;
+			}
+		}
+
 		if (!mathVars.contains(name))
 			mathVars += 'var ${name} = ${newValue}; ';
 		else
@@ -153,16 +166,24 @@ class ScriptManager
 		}
 		var result:Null<Float> = null;
 
-		var expr = '';
-		expr += mathVars;
-		expr += 'var result = 0.0; result = ${expression}; return result;';
-		trace(expr);
-		var parser = new hscript.Parser();
-		var ast = parser.parseString(expr);
-		var interp = new hscript.Interp();
-		result = interp.execute(ast);
+		try
+		{
+			var expr = '';
+			expr += mathVars;
+			expr += 'var result = 0.0; result = ${expression}; return result;';
+			trace(expr);
+			var parser = new hscript.Parser();
+			var ast = parser.parseString(expr);
+			var interp = new hscript.Interp();
+			result = interp.execute(ast);
 
-		trace(expression);
+			trace(expression);
+		}
+		catch (e)
+		{
+			lime.app.Application.current.window.alert(e.message, 'Math Command error');
+			result = 0.0;
+		}
 		trace(result);
 
 		switch (nextTask)
