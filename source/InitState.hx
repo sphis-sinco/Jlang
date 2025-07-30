@@ -6,8 +6,6 @@ class InitState extends FlxState
 	{
 		super.create();
 
-		InitManager.readInitFile(Assets.getJsonFile('init'));
-
 		if (FlxModding.mods.length > 0)
 		{
 			FlxG.switchState(() -> new ModMenu());

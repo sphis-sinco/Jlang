@@ -14,10 +14,16 @@ class Runner extends FlxState
 
 	public var it:String = '';
 
+	override public function new()
+	{
+		super();
+
+		InitManager.readInitFile(Assets.getJsonFile('init'));
+		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');
+	}
+
 	override public function create()
 	{
-		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');
-
 		lt = '';
 		it = '';
 
