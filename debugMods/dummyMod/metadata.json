@@ -1,18 +1,22 @@
 {
-        "name": "Dummy Mod",
-        "version": "1.0.0",
-        "description": "Dummy mod to help the dummies (respectfully ofc)",
+	"name": "Dummy Mod",
+	"version": "1.0.0",
+	"description": "Dummy mod to help the dummies (respectfully ofc)",
 
-        "credits": [
-                {
-                        "name": "sphis-sinco",
-                        "title": "jlang dude",
-                        "socials": "https://sphis-sinco.carrd.co"
-                },
-                {
-                        "name": "akaFinn_",
-                        "title": "flixel-modding dude",
-                        "socials": "https://x.com/akaFinn_"
-                }
-        ]
+	"credits": [
+		{
+			"name": "sphis-sinco",
+			"title": "jlang dude",
+			"socials": "https://sphis-sinco.carrd.co"
+		},
+
+		{
+			"name": "akaFinn_",
+			"title": "flixel-modding dude",
+			"socials": "https://x.com/akaFinn_"
+		}
+	],
+
+	"priority": 1,
+	"active": false
 }

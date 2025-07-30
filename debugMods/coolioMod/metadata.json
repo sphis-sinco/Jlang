@@ -1,18 +1,22 @@
 {
-        "name": "Coolio Mod",
-        "version": "1.0.0",
-        "description": "Cool mod to help the testings",
+	"name": "Coolio Mod",
+	"version": "1.0.0",
+	"description": "Cool mod to help the testings",
 
-        "credits": [
-                {
-                        "name": "sphis-sinco",
-                        "title": "jlang dude",
-                        "socials": "https://sphis-sinco.carrd.co"
-                },
-                {
-                        "name": "akaFinn_",
-                        "title": "flixel-modding dude",
-                        "socials": "https://x.com/akaFinn_"
-                }
-        ]
+	"credits": [
+		{
+			"name": "sphis-sinco",
+			"title": "jlang dude",
+			"socials": "https://sphis-sinco.carrd.co"
+		},
+
+		{
+			"name": "akaFinn_",
+			"title": "flixel-modding dude",
+			"socials": "https://x.com/akaFinn_"
+		}
+	],
+
+	"priority": 1,
+	"active": true
 }
