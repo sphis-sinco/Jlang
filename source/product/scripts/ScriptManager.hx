@@ -131,7 +131,11 @@ class ScriptManager
 		if (hasPathArg)
 		{
 			var video:hxcodec.flixel.FlxVideo = new hxcodec.flixel.FlxVideo();
-			video.onEndReached.add(video.dispose);
+			video.onEndReached.add(() ->
+			{
+				Runner.videoLayer.remove(video);
+				video.dispose();
+			});
 
 			Runner.videoLayer.add(video);
 			video.play(Assets.getVideoPath(args.get('arg1')));
