@@ -1,4 +1,5 @@
 # r2 - (7/30/2025)
+- Added app icons
 - Added "wait" command with a time argument required
 - Added "Press enter to play" message to the mods menu
 - Added a hint as to when input is required

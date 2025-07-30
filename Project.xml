@@ -118,4 +118,6 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
+	<icon path="assets/images/icon-32.png" size="32"/>
+	<icon path="assets/images/icon.png"/>
 </project>
