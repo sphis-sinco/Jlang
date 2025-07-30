@@ -3,3 +3,4 @@ export/
 dump/
 
 .DS_Store
+*.swf
