@@ -1,10 +1,8 @@
 package;
 
 import flixel.group.FlxGroup;
-import flixel.system.FlxModpack;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import openfl.display.BitmapData;
 
 class ModMenu extends FlxState
 {
