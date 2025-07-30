@@ -31,10 +31,10 @@ class Runner extends FlxState
 		super.update(elapsed);
 	}
 
-	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ';
 	var keyTime:Float = 0;
-	final MAX_KEYTIME:Float = 0.2;
-	final START_KEYTIME_DEFAULT:Float = 0.15;
+	final MAX_KEYTIME:Float = 0.15;
+	final START_KEYTIME_DEFAULT:Float = 0.05;
 	final START_KEYTIME_ALPHABET:Float = 0.1;
 
 	function handleKeyInput(elapsed:Float)
@@ -57,24 +57,48 @@ class Runner extends FlxState
 				for (i in keyPressed)
 				{
 					var key:FlxKey = i.ID;
-					trace(key);
+					var keyName:String = Std.string(key);
 					switch (key)
 					{
-						case FlxKey.BACKSPACE:
-							it = it.substring(0, it.length - 1);
-						case FlxKey.SPACE:
-							it += " ";
+						case ZERO:
+							keyName = '0';
+						case ONE:
+							keyName = '1';
+						case TWO:
+							keyName = '2';
+						case THREE:
+							keyName = '3';
+						case FOUR:
+							keyName = '4';
+						case FIVE:
+							keyName = '5';
+						case SIX:
+							keyName = '6';
+						case SEVEN:
+							keyName = '7';
+						case EIGHT:
+							keyName = '8';
+						case NINE:
+							keyName = '9';
+						case BACKSPACE, SPACE:
+							keyName = ' ';
+
 						default:
-							var keyName:String = Std.string(key);
-							alphabetKey(keyName);
-							if (allowedKeys.contains(keyName))
+							// LEAVE ME ALONE
+					}
+
+					if (!allowedKeys.contains(keyName))
+						return;
+
+					switch (key)
+					{
+						case BACKSPACE:
+							it = it.substring(0, it.length - 1);
+						default:
 							{
-								trace(keyName);
 								if (alphabetKey(keyName))
 									keyName = FlxG.keys.pressed.SHIFT ? keyName.toUpperCase() : keyName.toLowerCase();
 								it += keyName;
-								// if (it.length >= 25)
-								// 	it = it.substring(1);
 							}
 					}
 				}
