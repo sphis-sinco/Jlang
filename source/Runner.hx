@@ -1,13 +1,10 @@
 package;
 
-import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxContainer;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-#if hxCodec
-import hxcodec.flixel.FlxVideo;
-#end
 
 class Runner extends FlxState
 {
@@ -18,20 +15,12 @@ class Runner extends FlxState
 
 	public var it:String = '';
 
-	#if hxCodec
-	public static var videoLayer:FlxTypedGroup<FlxVideo>;
-	#end
-
 	override public function new()
 	{
 		super();
 
 		InitManager.readInitFile(Assets.getJsonFile('init'));
 		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');
-
-		#if hxCodec
-		videoLayer = new FlxTypedGroup<FlxBasic>();
-		#end
 	}
 
 	override public function create()
@@ -46,10 +35,6 @@ class Runner extends FlxState
 		inputText = new FlxText(Std.int(FlxG.width / 2), 0, Std.int(FlxG.width / 2), '', 16);
 		inputText.color = FlxColor.WHITE;
 		add(inputText);
-
-		#if hxCodec
-		add(videoLayer);
-		#end
 
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 
