@@ -31,6 +31,11 @@
                         { "function_name": "print", "args": ["getvar", "a"] },
                         { "function_name": "print", "args": ["I can also do this (1/4):"] },
                         { "function_name": "print", "args": ["math_divide", [1,4], "a"] },
+                        { "function_name": "wait", "args": ["0.5"] },
+                        { "function_name": "print", "args": ["wait."] },
+                        { "function_name": "wait", "args": ["2.0"] },
+                        { "function_name": "print", "args": ["k thanks bro."] },
+                        { "function_name": "wait", "args": ["0.1"] },
                         { "function_name": "switchfile", "args": ["inputStuff"] }
                 ]
         }

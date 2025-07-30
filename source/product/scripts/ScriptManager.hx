@@ -1,5 +1,6 @@
 package product.scripts;
 
+import flixel.util.FlxTimer;
 import haxe.PosInfos;
 
 class ScriptManager
@@ -99,13 +100,13 @@ class ScriptManager
 					trace('Clearing output');
 					Runner.lt = '';
 				case 'input':
-					keepRunning = false;
-					stored_line = index + 1;
-					stored_scriptPath = scriptFilePath;
-					Runner.inputRequiredSignal.dispatch();
+					inputCmd(index, scriptFilePath);
 					break;
 				case 'playvideo':
 					playVideoCmd(args, scriptFilePath);
+				case 'wait':
+					if (waitCmd(args, scriptFilePath, index))
+						break;
 				default:
 					scriptTrace('ERROR: UNKNOWN FUNCTION NAME WHILE PARSING: ${code.function_name}', scriptFilePath);
 			}
@@ -121,6 +122,43 @@ class ScriptManager
 
 	public static var stored_scriptPath:String = '';
 	public static var stored_line:Int = 0;
+
+	public static function inputCmd(index:Int, scriptFilePath:String)
+	{
+		stop(index, scriptFilePath);
+		Runner.inputRequiredSignal.dispatch();
+	}
+
+	public static function stop(index:Int, scriptFilePath:String)
+	{
+		keepRunning = false;
+		stored_line = index + 1;
+		stored_scriptPath = scriptFilePath;
+
+		return true;
+	}
+
+	public static function waitCmd(args:Map<String, Dynamic>, scriptFilePath:String, index:Int)
+	{
+		final hasTimeArg = args.get('arg1') != null;
+		if (hasTimeArg)
+		{
+			FlxTimer.wait(Std.parseFloat(args.get('arg1')), () ->
+			{
+				parseScript(scriptFilePath, index + 1);
+			});
+
+			stop(index, scriptFilePath);
+
+			return true;
+		}
+		else
+		{
+			if (!hasTimeArg)
+				scriptTrace('ERROR: MISSING "wait" ARG "time"', scriptFilePath);
+		}
+		return false;
+	}
 
 	public static function playVideoCmd(args:Map<String, Dynamic>, scriptFilePath:String)
 	{
