@@ -125,9 +125,7 @@ class ScriptManager
 	{
 		#if !hxCodec
 		lime.app.Application.current.window.alert('The "HxCodec" library cannot be found', 'HxCodec required for videos');
-		return;
-		#end
-
+		#else
 		final hasPathArg = args.get('arg1') != null;
 
 		if (hasPathArg)
@@ -143,6 +141,7 @@ class ScriptManager
 			if (!hasPathArg)
 				scriptTrace('ERROR: MISSING "playvideo" ARG "path"', scriptFilePath);
 		}
+		#end
 	}
 
 	public static function printCommand(args:Map<String, Dynamic>, scriptFilePath:String)
