@@ -1,7 +1,7 @@
 {
         "scripts": {
                 "scriptPath": "data/scripts",
-                "mainScriptName": "newmathstuff",
+                "mainScriptName": "main",
                 "customExtension": "json"
         },
         "product": {
