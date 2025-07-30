@@ -1,6 +1,7 @@
 package;
 
 import flixel.group.FlxGroup;
+import flixel.system.FlxModpack;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import openfl.display.BitmapData;
@@ -42,8 +43,8 @@ class ModMenu extends FlxState
 
 		loadMods();
 
-		descBg = new FlxSprite(0, FlxG.height - 160).makeGraphic(FlxG.width, 160, 0xFF000000);
-		descBg.alpha = 0.6;
+		descBg = new FlxSprite(0, FlxG.height - 320).makeGraphic(FlxG.width, 320, 0xFF000000);
+		descBg.alpha = 1;
 		add(descBg);
 
 		descriptionText = new FlxText(descBg.x, descBg.y + 4, FlxG.width, "Template Description", 16);
@@ -112,15 +113,22 @@ class ModMenu extends FlxState
 		{
 			for (x in page.members)
 			{
+				final x_mod = FlxModding.mods.members[x.ID];
+
 				x.y = 10 + (bruh * 32);
-				x.alpha = (curSelected == x.ID) ? 1.0 : 0.6;
+				x.alpha = (x_mod.active) ? 1.0 : 0.6;
 				x.color = (curSelected == x.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 				if (curSelected == x.ID)
 				{
 					@:privateAccess
 					descriptionText.color = FlxColor.WHITE;
-					descriptionText.text = '';
+					descriptionText.text = 'version ${x_mod.version}\n\n' + '${x_mod.description}\n\n' + 'CREDITS';
+
+					for (person in x_mod.credits)
+					{
+						descriptionText.text += '\n${person.name} - ${person.title}';
+					}
 				}
 
 				bruh++;
