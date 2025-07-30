@@ -60,7 +60,7 @@ class FlxModpack extends FlxBasic
 				active: active,
 			}));
 			#if debug
-			#if android return; #end
+			#if (android || !updateOGModpackFiles) return; #end
 
 			var sysPath = Sys.programPath().substring(0, Sys.programPath().indexOf('\\export')).replace('\\', '/');
 			sysPath += '/$basicPath';
