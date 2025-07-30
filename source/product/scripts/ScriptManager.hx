@@ -13,7 +13,8 @@ class ScriptManager
 
 	static var updateVariable = function(name:String, nv:Dynamic)
 	{
-		var newValue:Dynamic = nv;
+		var newValue:Dynamic = null;
+		newValue = nv;
 
 		try
 		{
