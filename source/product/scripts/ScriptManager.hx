@@ -269,7 +269,6 @@ class ScriptManager
 			{
 				video.dispose();
 			});
-
 			video.play(Assets.getVideoPath(args.get('arg1')));
 		}
 		else
