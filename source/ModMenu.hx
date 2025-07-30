@@ -55,7 +55,7 @@ class ModMenu extends FlxState
 			descriptionText.alignment = CENTER;
 		}
 
-		var leText:String = 'Press [SPACE] to enable / disable the currently selected mod.';
+		var leText:String = 'Press [SPACE] to enable / disable the currently selected mod.\nPress [ENTER] to play';
 
 		var text:FlxText = new FlxText(0, FlxG.height - 22, FlxG.width, leText, 16);
 		text.scrollFactor.set();
