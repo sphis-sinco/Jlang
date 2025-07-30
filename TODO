@@ -1,0 +1,5 @@
+- Preloading assets (i.e. videos) through init.json
+- SFX
+- Give hints as to when input is required
+- Image background (init.json and script files)
+- Custom font (use init.json)
