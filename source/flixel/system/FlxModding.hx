@@ -248,7 +248,7 @@ class FlxModding
 
 					modpack.credits = metadata.credits;
 
-					modpack.active = true;
+					modpack.active = false;
 					modpack.priority = 1;
 				}
 				else if (system.exists(modpack.directory() + "/" + metaPolymodDirectory))
@@ -273,7 +273,7 @@ class FlxModding
 
 					modpack.credits = credits;
 
-					modpack.active = true;
+					modpack.active = false;
 					modpack.priority = 1;
 				}
 				else
@@ -287,7 +287,7 @@ class FlxModding
 
 					modpack.credits = [];
 
-					modpack.active = true;
+					modpack.active = false;
 					modpack.priority = -1;
 				}
 
@@ -632,7 +632,7 @@ class FlxModding
 		}
 
 		final finalpath = directory + "/" + id;
-		print(finalpath);
+		trace(finalpath);
 
 		return finalpath;
 		#end

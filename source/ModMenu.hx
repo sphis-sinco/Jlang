@@ -63,7 +63,7 @@ class ModMenu extends FlxState
 		text.scrollFactor.set();
 		add(text);
 
-		updateSel();
+		changeEnabledMod();
 	}
 
 	function loadMods()
@@ -85,6 +85,7 @@ class ModMenu extends FlxState
 			var modOption = new FlxText(10, 0, 0, mod.name, 16);
 			modOption.ID = optionLoopNum;
 			page.add(modOption);
+
 			optionLoopNum++;
 		}
 	}
@@ -105,15 +106,11 @@ class ModMenu extends FlxState
 			FlxG.switchState(() -> new Runner());
 		}
 
-		if (curSelected < 0)
-			curSelected = page.length - 1;
-
-		if (curSelected >= page.length)
-			curSelected = 0;
+		fixyfixfix();
 
 		if (FlxG.keys.justReleased.SPACE)
 		{
-			updateSel();
+			changeEnabledMod();
 		}
 
 		var bruh = 0;
@@ -145,17 +142,32 @@ class ModMenu extends FlxState
 		}
 	}
 
-	function updateSel()
+	function fixyfixfix()
 	{
-		if (page.members.length > 0)
-		{
-			for (x in page.members)
-			{
-				var x_mod = FlxModding.mods.members[x.ID];
+		if (curSelected < 0)
+			curSelected = page.length - 1;
 
-				x_mod.active = curSelected == x.ID;
-				x_mod.updateMetadata();
-			}
+		if (curSelected >= page.length)
+			curSelected = 0;
+	}
+
+	function changeEnabledMod()
+	{
+		fixyfixfix();
+
+		if (page.members.length <= 0)
+			return;
+
+		for (x in page.members)
+		{
+			var x_mod = FlxModding.mods.members[x.ID];
+
+			x_mod.active = (curSelected == x.ID);
+
+			if (x_mod.active)
+				trace('Active mod: ${x_mod.name}');
+
+			x_mod.updateMetadata();
 		}
 	}
 }
