@@ -48,8 +48,16 @@ class Runner extends FlxState
 
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
 
+		var scriptData = try
+		{
+			Assets.getFileTextContent('${ProductInfo.scriptPath}/Runner.hxc', false);
+		}
+		catch (e)
+		{
+			'trace(\'No script\');';
+		}
 		var parser = new hscript.Parser();
-		var ast = parser.parseString(Assets.getFileTextContent('${ProductInfo.scriptPath}/Runner.hxc', false) ?? 'trace(\'No script\');');
+		var ast = parser.parseString(scriptData);
 		var interp = new hscript.Interp();
 		interp.execute(ast);
 
