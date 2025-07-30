@@ -3,6 +3,7 @@ package;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 
 class Runner extends FlxState
 {
@@ -13,7 +14,8 @@ class Runner extends FlxState
 	{
 		it = '';
 
-		inputText = new FlxText(640, 0, 0, "", 16);
+		inputText = new FlxText(Std.int(FlxG.width / 2), 0, Std.int(FlxG.width / 2), "", 16);
+		inputText.color = FlxColor.WHITE;
 		add(inputText);
 
 		ScriptManager.parseScript('${ProductInfo.scriptPath}/${ProductInfo.mainScriptName}');
@@ -24,6 +26,7 @@ class Runner extends FlxState
 	override public function update(elapsed:Float)
 	{
 		inputText.text = it;
+		handleKeyInput(elapsed);
 
 		super.update(elapsed);
 	}
