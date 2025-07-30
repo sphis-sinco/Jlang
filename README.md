@@ -11,6 +11,6 @@ Hopefully easy to use
 <h1>
 Forks
 </h1>
-<a href="https://github.com/ZSolarDev/Jlang"> ZSolarDev's Fork </a>
+<a href="https://github.com/ZSolarDev/Jlang">JLang Z (by ZSolarDev)</a>
 
 </div>
