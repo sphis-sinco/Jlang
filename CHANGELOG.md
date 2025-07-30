@@ -1,4 +1,5 @@
 # r2 - (7/30/2025)
+- Added a hint as to when input is required
 - Added trace for outdated releases
 - Added changelog (hi!)
 - Added LibVLC Logging for `hxCodec`

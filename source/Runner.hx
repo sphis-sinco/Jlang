@@ -3,7 +3,9 @@ package;
 import flixel.input.FlxInput;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.util.FlxSignal;
 
 class Runner extends FlxState
 {
@@ -14,9 +16,18 @@ class Runner extends FlxState
 
 	public var it:String = '';
 
+	public static var inputRequiredSignal:FlxSignal;
+
 	override public function new()
 	{
 		super();
+
+		inputRequiredSignal = new FlxSignal();
+		inputRequiredSignal.add(() ->
+		{
+			FlxTween.cancelTweensOf(inputText);
+			FlxTween.color(inputText, 1.9, FlxColor.YELLOW, FlxColor.WHITE);
+		});
 
 		InitManager.readInitFile(Assets.getJsonFile('init'));
 		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');

@@ -102,6 +102,7 @@ class ScriptManager
 					keepRunning = false;
 					stored_line = index + 1;
 					stored_scriptPath = scriptFilePath;
+					Runner.inputRequiredSignal.dispatch();
 					break;
 				case 'playvideo':
 					playVideoCmd(args, scriptFilePath);
