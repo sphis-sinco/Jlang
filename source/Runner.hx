@@ -73,7 +73,10 @@ class Runner extends FlxState
 			return 'abcdefghijklmnopqrstuvwxyz'.contains(keyName.toLowerCase());
 		}
 
-		if (FlxG.keys.justPressed.ENTER) {}
+		if (FlxG.keys.justPressed.ENTER)
+		{
+			it = '';
+		}
 		else if (FlxG.keys.firstPressed() != FlxKey.NONE)
 		{
 			if (keyTime == 0 || keyTime > MAX_KEYTIME)
