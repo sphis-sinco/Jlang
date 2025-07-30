@@ -123,10 +123,22 @@ class ScriptManager
 	public static function newmathCommand(args:Map<String, Dynamic>, scriptFilePath:String)
 	{
 		final expression:String = Std.string(args.get('arg1'));
+		final nextTask:String = Std.string(args.get('arg2'));
+
+		if (expression == nextTask && nextTask == null)
+		{
+			scriptTrace('ERROR: MISSING "math" ARGS "expression" and "nextTask', scriptFilePath);
+			return;
+		}
 
 		if (expression == null)
 		{
 			scriptTrace('ERROR: MISSING "math" ARG "expression"', scriptFilePath);
+			return;
+		}
+		if (nextTask == null)
+		{
+			scriptTrace('ERROR: MISSING "math" ARG "nextTask"', scriptFilePath);
 			return;
 		}
 
@@ -140,6 +152,30 @@ class ScriptManager
 
 		trace(expression);
 		trace(result);
+
+		switch (nextTask)
+		{
+			case 'store':
+				final variableName:String = Std.string(args.get('arg3'));
+
+				if (variableName == null)
+				{
+					scriptTrace('ERROR: MISSING "math [exp..] store" ARG "variableName', scriptFilePath);
+					return;
+				}
+
+				updateVariable(variableName, Std.string(result));
+			case 'print':
+				final includeExpression:Null<Bool> = cast args.get('arg3');
+
+				if (includeExpression == null)
+				{
+					scriptTrace('ERROR: MISSING "math [exp..] print" ARG "includeExpression', scriptFilePath);
+					return;
+				}
+
+				printCommand(['arg1' => '${includeExpression ? '($expression) = ' : ''}$result'], scriptFilePath);
+		}
 	}
 
 	public static var keepRunning:Bool = true;
