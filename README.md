@@ -8,4 +8,9 @@ A scripting language for haxeflixel entirely based on JSON files.
 
 Hopefully easy to use
 
+<h1>
+Forks
+</h1>
+<a href="https://github.com/ZSolarDev/Jlang"> ZSolarDev's Fork </a>
+
 </div>
