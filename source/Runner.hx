@@ -58,6 +58,11 @@ class Runner extends FlxState
 		for (file in readDir)
 		{
 			trace(file);
+
+			if (file.endsWith(Assets.HSCRIPT_EXT))
+			{
+				add(new FlxHScript('$dirToRead/$file'));
+			}
 		}
 		#end
 
