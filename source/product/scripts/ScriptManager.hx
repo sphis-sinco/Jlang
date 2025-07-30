@@ -291,7 +291,11 @@ class ScriptManager
 
 		if (hasNameArg && hasValueArg)
 		{
-			if (Std.string(args.get('arg1')).toLowerCase().startsWith('math_'))
+			if (Std.string(args.get('arg1')).toLowerCase() == 'math')
+			{
+				newmathCommand(['arg1' => args.get('arg2'), 'arg2' => 'store', 'arg3' => args.get('arg3')], scriptFilePath);
+			}
+			else if (Std.string(args.get('arg1')).toLowerCase().startsWith('math_'))
 			{
 				fullMathCommand(args, scriptFilePath, d ->
 				{
