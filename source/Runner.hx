@@ -77,7 +77,7 @@ class Runner extends FlxState
 		{
 			if (!ScriptManager.keepRunning)
 			{
-				ScriptManager.stored_input = lt;
+				ScriptManager.stored_input = it;
 				ScriptManager.keepRunning = true;
 
 				ScriptManager.parseScript(ScriptManager.stored_scriptPath, ScriptManager.stored_line);
