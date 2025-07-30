@@ -130,48 +130,15 @@ class ScriptManager
 			return;
 		}
 
-		var previousPrevSymbol:String = '';
-		var previousSymbol:String = '';
-		var currentSymbol:String = '';
-		var nextSymbol:String = '';
-
 		var result:Null<Float> = null;
 
-		var i = 0;
-		for (symbol in expression.split(' '))
-		{
-			trace(symbol);
+		var expr = 'var result = 0.0; result = ${expression}; return result;';
+		var parser = new hscript.Parser();
+		var ast = parser.parseString(expr);
+		var interp = new hscript.Interp();
+		result = interp.execute(ast);
 
-			previousPrevSymbol = previousSymbol;
-			previousSymbol = currentSymbol;
-			currentSymbol = symbol;
-			nextSymbol = expression.split(' ')[i + 1];
-
-			switch (currentSymbol)
-			{
-				case '+':
-					trace('result($result) + $nextSymbol');
-					result += Std.parseFloat(nextSymbol);
-				case '-':
-					trace('result($result) - $nextSymbol');
-					result -= Std.parseFloat(nextSymbol);
-				case '*':
-					trace('result($result) * $nextSymbol');
-					result = result * Std.parseFloat(nextSymbol);
-				case '/':
-					trace('result($result) / $nextSymbol');
-					result = result / Std.parseFloat(nextSymbol);
-				default:
-					if (result == null)
-					{
-						trace('result($result) = $currentSymbol');
-						result = Std.parseFloat(currentSymbol);
-					}
-			}
-
-			i++;
-		}
-
+		trace(expression);
 		trace(result);
 	}
 
