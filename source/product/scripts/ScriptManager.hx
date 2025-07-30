@@ -7,13 +7,16 @@ class ScriptManager
 {
 	public static var scripts:Map<String, ScriptInfo> = [];
 
-	static var scriptinfoStuffs:ScriptInfo = {
+	public static var scriptinfoStuffs:ScriptInfo = {
 		variables: []
 	};
 
 	static var updateVariable = function(name:String, newValue:Dynamic)
 	{
-		mathVars += 'var ${name} = ${newValue}; ';
+		if (!mathVars.contains(name))
+			mathVars += 'var ${name} = ${newValue}; ';
+		else
+			mathVars.replace('var ${name} = ${scriptinfoStuffs.variables.get(name)}', 'var $name = $newValue');
 
 		scriptinfoStuffs.variables.set(name, newValue);
 	}
