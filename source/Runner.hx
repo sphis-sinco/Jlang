@@ -31,22 +31,33 @@ class Runner extends FlxState
 		super.update(elapsed);
 	}
 
-	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_+={}[]|\\;:"\',./<>?';
+	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 	var keyTime:Float = 0;
+	final MAX_KEYTIME:Float = 0.2;
+	final START_KEYTIME_DEFAULT:Float = 0.15;
+	final START_KEYTIME_ALPHABET:Float = 0.1;
 
 	function handleKeyInput(elapsed:Float)
 	{
+		var alphabetKey = function(keyName:String)
+		{
+			return 'abcdefghijklmnopqrstuvwxyz'.contains(keyName.toLowerCase());
+		}
+
 		if (FlxG.keys.justPressed.ENTER) {}
 		else if (FlxG.keys.firstPressed() != FlxKey.NONE)
 		{
-			if (keyTime == 0 || keyTime > 0.3)
+			if (keyTime == 0 || keyTime > MAX_KEYTIME)
 			{
-				if (keyTime > 0.3)
-					keyTime = 0.25;
 				var keyPressed:Array<FlxInput<FlxKey>> = FlxG.keys.getIsDown();
+
+				if (keyTime > MAX_KEYTIME)
+					keyTime = alphabetKey(Std.string(FlxG.keys.getIsDown()[0])) ? START_KEYTIME_ALPHABET : START_KEYTIME_DEFAULT;
+
 				for (i in keyPressed)
 				{
 					var key:FlxKey = i.ID;
+					trace(key);
 					switch (key)
 					{
 						case FlxKey.BACKSPACE:
@@ -55,12 +66,15 @@ class Runner extends FlxState
 							it += " ";
 						default:
 							var keyName:String = Std.string(key);
+							alphabetKey(keyName);
 							if (allowedKeys.contains(keyName))
 							{
-								keyName = FlxG.keys.pressed.SHIFT ? keyName.toUpperCase() : keyName.toLowerCase();
+								trace(keyName);
+								if (alphabetKey(keyName))
+									keyName = FlxG.keys.pressed.SHIFT ? keyName.toUpperCase() : keyName.toLowerCase();
 								it += keyName;
-								if (it.length >= 25)
-									it = it.substring(1);
+								// if (it.length >= 25)
+								// 	it = it.substring(1);
 							}
 					}
 				}
