@@ -35,7 +35,7 @@ class Runner extends FlxState
 	override public function update(elapsed:Float)
 	{
 		leftText.text = lt;
-		inputText.text = it;
+		inputText.text = '> $it';
 		handleKeyInput(elapsed);
 
 		FlxG.watch.addQuick('leftText.y', leftText.y);
