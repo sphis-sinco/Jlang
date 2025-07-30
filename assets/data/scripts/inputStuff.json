@@ -6,7 +6,9 @@
                 "name": "main",
                 "code": [
                         { "function_name": "clear" },
-                        { "function_name": "print", "args": ["Hello world"]}
+                        { "function_name": "print", "args": ["Hello world"]},
+                        { "function_name": "input" },
+                        { "function_name": "print", "args": ["Thanks for the input"]}
                 ]
         }
 }

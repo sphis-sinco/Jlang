@@ -75,6 +75,14 @@ class Runner extends FlxState
 
 		if (FlxG.keys.justPressed.ENTER)
 		{
+			if (!ScriptManager.keepRunning)
+			{
+				ScriptManager.stored_input = lt;
+				ScriptManager.keepRunning = true;
+
+				ScriptManager.parseScript(ScriptManager.stored_scriptPath, ScriptManager.stored_line);
+			}
+
 			it = '';
 		}
 		else if (FlxG.keys.firstPressed() != FlxKey.NONE)

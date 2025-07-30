@@ -33,7 +33,7 @@ class ScriptManager
 		#end
 	}
 
-	public static function parseScript(scriptFilePath:String)
+	public static function parseScript(scriptFilePath:String, ?restorationLine:Int = 0)
 	{
 		scriptinfoStuffs = {
 			variables: []
@@ -42,16 +42,31 @@ class ScriptManager
 		if (!scripts.exists(scriptFilePath))
 			scripts.set(scriptFilePath, scriptinfoStuffs);
 
-		trace('Parsing script assets/$scriptFilePath.${ProductInfo.customExtension}');
-		script = cast Assets.getScriptFile(scriptFilePath, false);
+		trace('Parsing script $scriptFilePath.${ProductInfo.customExtension}');
 
+		var index = (restorationLine > 0) ? restorationLine : 0;
+		if (index < 1)
+		{
+			// in theory there should've been no changes
+			script = cast Assets.getScriptFile(scriptFilePath, false);
+		}
+
+		var ii = 0;
 		for (code in script.main_function.code)
 		{
+			if (index > 0 && ii < index)
+			{
+				ii++;
+				continue;
+			}
+
+			// trace(code);
+
 			var args:Map<String, Dynamic> = [];
 
 			var i = 1;
 			FlxG.log.add('// ${code.function_name} \\\\');
-			for (arg in code.args)
+			for (arg in code.args ?? [])
 			{
 				args.set('arg$i', arg);
 
@@ -72,11 +87,26 @@ class ScriptManager
 				case 'clear':
 					trace('Clearing output');
 					Runner.lt = '';
+				case 'input':
+					keepRunning = false;
+					stored_line = index + 1;
+					stored_scriptPath = scriptFilePath;
+					break;
 				default:
 					scriptTrace('ERROR: UNKNOWN FUNCTION NAME WHILE PARSING: ${code.function_name}', scriptFilePath);
 			}
+
+			index++;
+			ii++;
 		}
 	}
+
+	public static var keepRunning:Bool = true;
+
+	public static var stored_input:String = '';
+
+	public static var stored_scriptPath:String = '';
+	public static var stored_line:Int = 0;
 
 	public static function printCommand(args:Map<String, Dynamic>, scriptFilePath:String)
 	{
