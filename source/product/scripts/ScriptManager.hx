@@ -107,6 +107,8 @@ class ScriptManager
 				case 'wait':
 					if (waitCmd(args, scriptFilePath, index))
 						break;
+				case 'math':
+					newmathCommand(args, scriptFilePath);
 				default:
 					scriptTrace('ERROR: UNKNOWN FUNCTION NAME WHILE PARSING: ${code.function_name}', scriptFilePath);
 			}
@@ -114,6 +116,63 @@ class ScriptManager
 			index++;
 			ii++;
 		}
+	}
+
+	static final numbers:String = '1234567890';
+
+	public static function newmathCommand(args:Map<String, Dynamic>, scriptFilePath:String)
+	{
+		final expression:String = Std.string(args.get('arg1'));
+
+		if (expression == null)
+		{
+			scriptTrace('ERROR: MISSING "math" ARG "expression"', scriptFilePath);
+			return;
+		}
+
+		var previousPrevSymbol:String = '';
+		var previousSymbol:String = '';
+		var currentSymbol:String = '';
+		var nextSymbol:String = '';
+
+		var result:Null<Float> = null;
+
+		var i = 0;
+		for (symbol in expression.split(' '))
+		{
+			trace(symbol);
+
+			previousPrevSymbol = previousSymbol;
+			previousSymbol = currentSymbol;
+			currentSymbol = symbol;
+			nextSymbol = expression.split(' ')[i + 1];
+
+			switch (currentSymbol)
+			{
+				case '+':
+					trace('result($result) + $nextSymbol');
+					result += Std.parseFloat(nextSymbol);
+				case '-':
+					trace('result($result) - $nextSymbol');
+					result -= Std.parseFloat(nextSymbol);
+				case '*':
+					trace('result($result) * $nextSymbol');
+					result = result * Std.parseFloat(nextSymbol);
+				case '/':
+					trace('result($result) / $nextSymbol');
+					result = result / Std.parseFloat(nextSymbol);
+				default:
+					if (result == null)
+					{
+						trace('result($result) = $currentSymbol');
+						result = Std.parseFloat(currentSymbol);
+					}
+			}
+
+			i++;
+		}
+
+		trace(result);
 	}
 
 	public static var keepRunning:Bool = true;

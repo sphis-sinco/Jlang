@@ -1,12 +1,12 @@
 {
         "scripts": {
                 "scriptPath": "data/scripts",
-                "mainScriptName": "main",
+                "mainScriptName": "newmathstuff",
                 "customExtension": "json"
         },
         "product": {
                 "title": "JLang Project",
-                "version": "1.0.0",
+                "version": "2.0.0",
                 "jlang_release": 2,
                 "credits": [
                         "Sinco"

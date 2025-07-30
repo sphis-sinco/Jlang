@@ -6,7 +6,8 @@
                 "name": "main",
                 "code": [
                         { "function_name": "clear" },
-                        { "function_name": "print", "args": ["Hello world"]}
+                        { "function_name": "print", "args": ["Hello world"]},
+                        { "function_name": "math", "args": ["5 + 10 * 6 / 8"]}
                 ]
         }
 }
