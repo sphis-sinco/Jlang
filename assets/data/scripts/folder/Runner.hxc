@@ -1,0 +1,3 @@
+trace('Hello world');
+trace('This is a runner script');
+trace('IN A FOLDER!');
