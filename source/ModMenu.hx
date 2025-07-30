@@ -95,15 +95,24 @@ class ModMenu extends FlxState
 	{
 		super.update(elapsed);
 
-		if (curSelected < 0)
+		if (FlxG.keys.justReleased.UP)
+			curSelected--;
+		if (FlxG.keys.justReleased.DOWN)
+			curSelected++;
+
+		if (FlxG.keys.justReleased.ENTER)
 		{
-			curSelected = page.length - 1;
-			updateSel();
+			FlxG.switchState(() -> new Runner());
 		}
 
+		if (curSelected < 0)
+			curSelected = page.length - 1;
+
 		if (curSelected >= page.length)
-		{
 			curSelected = 0;
+
+		if (FlxG.keys.justReleased.SPACE)
+		{
 			updateSel();
 		}
 
@@ -136,5 +145,17 @@ class ModMenu extends FlxState
 		}
 	}
 
-	function updateSel() {}
+	function updateSel()
+	{
+		if (page.members.length > 0)
+		{
+			for (x in page.members)
+			{
+				var x_mod = FlxModding.mods.members[x.ID];
+
+				x_mod.active = curSelected == x.ID;
+				x_mod.updateMetadata();
+			}
+		}
+	}
 }

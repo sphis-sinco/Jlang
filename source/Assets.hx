@@ -11,7 +11,10 @@ class Assets
 	// file paths
 
 	public static function getPath(id:String)
+	{
+		FlxG.log.notice('getPath($id)');
 		return id;
+	}
 
 	public static function getAssetPath(id:String)
 		return getPath('assets/$id');

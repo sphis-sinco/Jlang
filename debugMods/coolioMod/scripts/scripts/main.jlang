@@ -1,0 +1,37 @@
+{
+        "logging": {
+                "prefix": "MAIN"
+        },
+        "main_function": {
+                "name": "main",
+                "code": [
+                        { "function_name": "print", "args": ["Hello world"]},
+                        { "function_name": "setvar", "args": ["a", "10"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["So if I do setvar 20 and then print getvar a."] },
+                        { "function_name": "setvar", "args": ["a", "20"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["And if I do setvar math_plus to do 1 + 1"] },
+                        { "function_name": "setvar", "args": ["math_plus", [1,1], "a"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["And if I do setvar math_subtract to do 69 - 42"] },
+                        { "function_name": "setvar", "args": ["math_subtract", [69,42], "a"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["And if I do setvar math_multiply to do 5 * 6.6"] },
+                        { "function_name": "setvar", "args": ["math_multiply", [5,6.6], "a"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["And if I do setvar math_divide to do 420 / 10"] },
+                        { "function_name": "setvar", "args": ["math_divide", [420,10], "a"] },
+                        { "function_name": "print", "args": ["a is "] },
+                        { "function_name": "print", "args": ["getvar", "a"] },
+                        { "function_name": "print", "args": ["I can also do this (1/4):"] },
+                        { "function_name": "print", "args": ["math_divide", [1,4], "a"] },
+                        { "function_name": "switchfile", "args": ["inputStuff"] }
+                ]
+        }
+}

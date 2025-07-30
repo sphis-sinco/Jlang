@@ -1,8 +1,8 @@
 {
         "scripts": {
-                "scriptPath": "data/scripts",
+                "scriptPath": "scripts/scripts",
                 "mainScriptName": "main",
-                "customExtension": "json"
+                "customExtension": "jlang"
         },
         "product": {
                 "title": "JLang Project (COOLIO MODDED!!!!!!!!!!!)",

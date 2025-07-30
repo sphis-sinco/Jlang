@@ -16,6 +16,8 @@ class Runner extends FlxState
 
 	override public function create()
 	{
+		trace('${ProductInfo.title} (${ProductInfo.version}) by ${ProductInfo.credits[0]} for JLang release ${ProductInfo.jlang_release}');
+
 		lt = '';
 		it = '';
 
