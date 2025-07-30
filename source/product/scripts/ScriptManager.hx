@@ -11,7 +11,12 @@ class ScriptManager
 		variables: []
 	};
 
-	static var updateVariable = function(name:String, newValue:Dynamic) scriptinfoStuffs.variables.set(name, newValue);
+	static var updateVariable = function(name:String, newValue:Dynamic)
+	{
+		mathVars += 'var ${name} = ${newValue}; ';
+
+		scriptinfoStuffs.variables.set(name, newValue);
+	}
 	static var getVariable = function(name:String) return scriptinfoStuffs.variables.get(name);
 
 	static var script:ScriptFile;
@@ -120,6 +125,8 @@ class ScriptManager
 
 	static final numbers:String = '1234567890';
 
+	static var mathVars:String = '';
+
 	public static function newmathCommand(args:Map<String, Dynamic>, scriptFilePath:String)
 	{
 		final expression:String = Std.string(args.get('arg1'));
@@ -141,23 +148,10 @@ class ScriptManager
 			scriptTrace('ERROR: MISSING "math" ARG "nextTask"', scriptFilePath);
 			return;
 		}
-
 		var result:Null<Float> = null;
 
 		var expr = '';
-		trace(scriptinfoStuffs.variables);
-		for (variable in scriptinfoStuffs.variables)
-		{
-			trace(variable);
-			try
-			{
-				expr += 'var ${variable.name} = ${variable.value}; ';
-			}
-			catch (e)
-			{
-				trace(e.message);
-			}
-		}
+		expr += mathVars;
 		expr += 'var result = 0.0; result = ${expression}; return result;';
 		trace(expr);
 		var parser = new hscript.Parser();
