@@ -1,0 +1,15 @@
+{
+        "scripts": {
+                "scriptPath": "data/scripts",
+                "mainScriptName": "main",
+                "customExtension": "json"
+        },
+        "product": {
+                "title": "JLang Project (COOLIO MODDED!!!!!!!!!!!)",
+                "version": "1.0.0",
+                "jlang_release": 1,
+                "credits": [
+                        "Cinco"
+                ]
+        }
+}
