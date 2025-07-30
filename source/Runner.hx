@@ -17,7 +17,7 @@ class Runner extends FlxState
 		super.update(elapsed);
 	}
 
-	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_+={}[]|\\;:"\',./<>?';
 	var keyTime:Float = 0;
 
 	function handleKeyInput(elapsed:Float)
