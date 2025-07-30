@@ -10,6 +10,9 @@
                         { "function_name": "input"},
                         { "function_name": "print", "args": ["Thanks for the input: "]},
                         { "function_name": "print", "args": ["getvar", "stored_input"]}
+                        { "function_name": "print", "args": ["Gonna play a video now."]},
+                        { "function_name": "input"},
+                        { "function_name": "playvideo", "args": ["tempVid"]}
                 ]
         }
 }
